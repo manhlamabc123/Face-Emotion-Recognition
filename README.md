@@ -82,3 +82,4 @@ python visualize.py [-t] [-c] [--data [data_path]] [--model [model_path]]
 
 * This project was recreate of and update from [this repo](https://github.com/omarsayed7/Deep-Emotion).
 * Youtube Tutorial: [video](https://www.youtube.com/watch?v=yN7qfBhfGqs)
+* How to Implement Spatial Transformer Network in PyTorch: [doc](https://pytorch.org/tutorials/intermediate/spatial_transformer_tutorial.html)
