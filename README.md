@@ -14,7 +14,7 @@
 
 ## Purpose of Project
 
-* Train a model to classify human's face emotion (happiness, sadness, anger, fear, disgust, surprise) and neutral
+* Train a model to classify human's face emotion (happiness, sadness, anger, fear, disgust, surprise and neutral)
 * Learn about PyTorch
 
 ## About
