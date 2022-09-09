@@ -69,7 +69,7 @@ python main.py  [-t] [--data [data_path]] [--hparams [hyperparams]]
 ```
 
 ### To validate the model
-A small bug where it said that `KeyError(key) no key name 'emotion'` can be fixxed by adding `',emotion,'` before `'pixel'` in `test.csv`
+A small bug where it said that `KeyError(key) no key name 'emotion'` can be fixed by adding `',emotion,'` before `'pixel'` in `test.csv`
 ```
 python visualize.py [-t] [-c] [--data [data_path]] [--model [model_path]]
 
