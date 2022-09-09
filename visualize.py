@@ -22,12 +22,12 @@ parser.add_argument('-c', '--cam', type=bool, help='Test the model in real time 
 args = parser.parse_args()
 
 transformation = transforms.Compose([transforms.ToTensor(),transforms.Normalize((0.5,),(0.5,))])
-dataset = Plain_Dataset(csv_file=args.data+'/test.csv',img_dir = args.data+'/'+'test/',datatype = 'finaltest',transform = transformation)
+dataset = Plain_Dataset(csv_file=args.data+'/test.csv',img_dir = args.data+'/'+'test/',datatype = 'test',transform = transformation)
 test_loader =  DataLoader(dataset,batch_size=64,num_workers=0)
 
 net = Deep_Emotion()
 print("Deep Emotion:-", net)
-net.load_state_dict(torch.load(args.model))
+net.load_state_dict(torch.load(args.model, map_location=torch.device('cpu')))
 net.to(device)
 net.eval()
 #Model Evaluation on test data
@@ -40,7 +40,7 @@ if args.test_acc:
             outputs = net(data)
             pred = F.softmax(outputs,dim=1)
             classs = torch.argmax(pred,1)
-            wrong = torch.where(classs != labels,torch.tensor([1.]).cuda(),torch.tensor([0.]).cuda())
+            wrong = torch.where(classs != labels,torch.tensor([1.]).to(device),torch.tensor([0.]).to(device))
             acc = 1- (torch.sum(wrong) / 64)
             total.append(acc.item())
 
@@ -57,7 +57,7 @@ def load_img(path):
 
 if args.cam:
     # Load the cascade
-    face_cascade = cv2.CascadeClassifier('cascade_model/haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
     # To capture video from webcam.
     cap = cv2.VideoCapture(0)
@@ -80,7 +80,7 @@ if args.cam:
         out = net(imgg)
         pred = F.softmax(out)
         classs = torch.argmax(pred,1)
-        wrong = torch.where(classs != 3,torch.tensor([1.]).cuda(),torch.tensor([0.]).cuda())
+        wrong = torch.where(classs != 3,torch.tensor([1.]).to(device),torch.tensor([0.]).to(device))
         classs = torch.argmax(pred,1)
         prediction = classes[classs.item()]
 
