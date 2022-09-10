@@ -23,7 +23,8 @@ This is a PyTorch implementation of research paper, [Deep-Emotion](https://arxiv
 
 ## Architecture
 
-* An end-to-end deep learning framework, based on Attentional Convolutional Network
+* This project uses Haar Cascade to detect the face, then crop it out then use pre-trained model
+* An deep learning framework, based on Attentional Convolutional Network
 * Attention mechanism is added through spatial transformer network
 
 
